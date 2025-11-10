@@ -1,5 +1,5 @@
 import { useGetSchedulersQuery, useDeleteSchedulerMutation, useUpdateSchedulerMutation } from '@/lib/state/apiSlice';
-import { DataTable } from '../ui/data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { Scheduler } from '@/lib/state/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '../ui/checkbox';
