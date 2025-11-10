@@ -15,7 +15,7 @@ export function JobDetails({ jobId }: { jobId: number }) {
       className="w-full"
       onValueChange={setActiveTab}
     >
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-start mb-4">
         <TabsList>
           <TabsTrigger value="actions">Actions</TabsTrigger>
           <TabsTrigger value="callerids">Caller IDs</TabsTrigger>
