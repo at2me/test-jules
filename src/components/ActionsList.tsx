@@ -2,8 +2,8 @@ import { useGetActionsQuery, useDeleteActionMutation, useUpdateActionMutation } 
 import { DataTable } from '@/components/ui/data-table';
 import { Action } from '@/lib/state/types';
 import { ColumnDef } from '@tanstack/react-table';
-import { Checkbox } from '../ui/checkbox';
-import { Button } from '../ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
 import { ArrowUpDown, Edit, Trash2 } from 'lucide-react';
 import {
   Dialog,

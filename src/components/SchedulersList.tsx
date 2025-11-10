@@ -2,8 +2,8 @@ import { useGetSchedulersQuery, useDeleteSchedulerMutation, useUpdateSchedulerMu
 import { DataTable } from '@/components/ui/data-table';
 import { Scheduler } from '@/lib/state/types';
 import { ColumnDef } from '@tanstack/react-table';
-import { Checkbox } from '../ui/checkbox';
-import { Button } from '../ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
 import { Edit, Trash2 } from 'lucide-react';
 import {
   Dialog,
