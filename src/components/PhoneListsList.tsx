@@ -1,5 +1,5 @@
 import { useGetPhoneListsQuery, useDeletePhoneListMutation, useUpdatePhoneListMutation } from '@/lib/state/apiSlice';
-import { DataTable } from '../ui/data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { PhoneList } from '@/lib/state/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '../ui/checkbox';
