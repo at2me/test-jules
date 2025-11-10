@@ -1,0 +1,10 @@
+import { DomainsAccordion } from './DomainsAccordion';
+
+export function Menu() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-4">Menu</h1>
+      <DomainsAccordion />
+    </div>
+  );
+}
