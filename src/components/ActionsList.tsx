@@ -1,7 +1,7 @@
 import { useGetActionsQuery, useDeleteActionMutation, useUpdateActionMutation } from '@/lib/state/apiSlice';
 import { DataTable } from '@/components/ui/data-table';
-import { Action } from '@/lib/state/types';
-import { ColumnDef } from '@tanstack/react-table';
+import type { Action } from '@/lib/state/types';
+import type { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { ArrowUpDown, Edit, Trash2 } from 'lucide-react';
