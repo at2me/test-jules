@@ -57,7 +57,11 @@ export function JobsList({ domainId }: { domainId: number }) {
   return (
     <Accordion type="single" collapsible className="w-full">
       {jobs.map((job) => (
-        <AccordionItem key={job.id} value={`job-${job.id}`}>
+        <AccordionItem
+          key={job.id}
+          value={`job-${job.id}`}
+          className="border rounded-lg mb-2 p-2 shadow-sm bg-gray-50"
+        >
           <AccordionTrigger>
             <div className="flex justify-between w-full items-center">
               <span>{job.name}</span>
