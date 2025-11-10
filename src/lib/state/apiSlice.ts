@@ -117,7 +117,21 @@ export const apiSlice = createApi({
             ]
           : [{ type: 'Action', id: 'LIST' }],
     }),
-    //... (other CRUD operations for Actions)
+    updateAction: builder.mutation<Action, Partial<Action>>({
+      query: ({ id, ...patch }) => ({
+        url: `actions/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Action', id }],
+    }),
+    deleteAction: builder.mutation<{ success: boolean; id: number }, number>({
+      query: (id) => ({
+        url: `actions/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (_result, _error, id) => [{ type: 'Action', id }],
+    }),
 
     // CallerIDs
     getCallerIDs: builder.query<CallerID[], number>({
@@ -130,7 +144,21 @@ export const apiSlice = createApi({
             ]
           : [{ type: 'CallerID', id: 'LIST' }],
     }),
-    //...
+    updateCallerID: builder.mutation<CallerID, Partial<CallerID>>({
+      query: ({ id, ...patch }) => ({
+        url: `callerids/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'CallerID', id }],
+    }),
+    deleteCallerID: builder.mutation<{ success: boolean; id: number }, number>({
+      query: (id) => ({
+        url: `callerids/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (_result, _error, id) => [{ type: 'CallerID', id }],
+    }),
 
     // PhoneLists
     getPhoneLists: builder.query<PhoneList[], number>({
@@ -143,7 +171,21 @@ export const apiSlice = createApi({
             ]
           : [{ type: 'PhoneList', id: 'LIST' }],
     }),
-    //...
+    updatePhoneList: builder.mutation<PhoneList, Partial<PhoneList>>({
+      query: ({ id, ...patch }) => ({
+        url: `phones/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'PhoneList', id }],
+    }),
+    deletePhoneList: builder.mutation<{ success: boolean; id: number }, number>({
+      query: (id) => ({
+        url: `phones/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (_result, _error, id) => [{ type: 'PhoneList', id }],
+    }),
 
     // Schedulers
     getSchedulers: builder.query<Scheduler[], number>({
@@ -156,7 +198,21 @@ export const apiSlice = createApi({
             ]
           : [{ type: 'Scheduler', id: 'LIST' }],
     }),
-    //...
+    updateScheduler: builder.mutation<Scheduler, Partial<Scheduler>>({
+      query: ({ id, ...patch }) => ({
+        url: `schedulers/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Scheduler', id }],
+    }),
+    deleteScheduler: builder.mutation<{ success: boolean; id: number }, number>({
+      query: (id) => ({
+        url: `schedulers/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (_result, _error, id) => [{ type: 'Scheduler', id }],
+    }),
   }),
 });
 
@@ -174,7 +230,15 @@ export const {
   useDeleteJobMutation,
 
   useGetActionsQuery,
+  useUpdateActionMutation,
+  useDeleteActionMutation,
   useGetCallerIDsQuery,
+  useUpdateCallerIDMutation,
+  useDeleteCallerIDMutation,
   useGetPhoneListsQuery,
+  useUpdatePhoneListMutation,
+  useDeletePhoneListMutation,
   useGetSchedulersQuery,
+  useUpdateSchedulerMutation,
+  useDeleteSchedulerMutation,
 } = apiSlice;
