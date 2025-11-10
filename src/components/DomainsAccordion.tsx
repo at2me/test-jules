@@ -57,7 +57,11 @@ export function DomainsAccordion() {
   return (
     <Accordion type="single" collapsible className="w-full">
       {domains.map((domain) => (
-        <AccordionItem key={domain.id} value={`item-${domain.id}`}>
+        <AccordionItem
+          key={domain.id}
+          value={`item-${domain.id}`}
+          className="border rounded-lg mb-4 p-2 shadow-sm"
+        >
           <AccordionTrigger>
             <div className="flex justify-between w-full items-center">
               <span>{domain.name}</span>
