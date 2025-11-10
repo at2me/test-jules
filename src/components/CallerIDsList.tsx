@@ -1,7 +1,7 @@
 import { useGetCallerIDsQuery, useDeleteCallerIDMutation, useUpdateCallerIDMutation } from '@/lib/state/apiSlice';
 import { DataTable } from '@/components/ui/data-table';
-import { CallerID } from '@/lib/state/types';
-import { ColumnDef } from '@tanstack/react-table';
+import type { CallerID } from '@/lib/state/types';
+import type { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Edit, Trash2 } from 'lucide-react';
