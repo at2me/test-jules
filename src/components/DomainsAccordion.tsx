@@ -62,19 +62,19 @@ export function DomainsAccordion() {
           value={`item-${domain.id}`}
           className="border rounded-lg mb-4 p-2 shadow-sm"
         >
-          <AccordionTrigger>
+          <AccordionTrigger className="ml-4 hover:no-underline">
             <div className="flex justify-between w-full items-center">
-              <span>{domain.name}</span>
+              <span className="text-lg font-semibold">{domain.name}</span>
               <div className="flex gap-2 mr-2">
                 <Dialog open={editingDomain?.id === domain.id} onOpenChange={(isOpen) => !isOpen && setEditingDomain(null)}>
                   <DialogTrigger asChild>
                     <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
+                        variant="outline"
+                        size="icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
                         setEditingDomain({ id: domain.id, name: domain.name ?? '' });
-                      }}
+                        }}
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
@@ -88,14 +88,14 @@ export function DomainsAccordion() {
                       </DialogDescription>
                     </DialogHeader>
                     <input
-                      type="text"
-                      value={editingDomain?.name ?? ''}
-                      onChange={(e) =>
-                        setEditingDomain(
+                        type="text"
+                        value={editingDomain?.name ?? ''}
+                        onChange={(e) =>
+                            setEditingDomain(
                           editingDomain ? { ...editingDomain, name: e.target.value } : null
-                        )
-                      }
-                      className="border p-2 rounded"
+                            )
+                        }
+                        className="border p-2 rounded"
                     />
                     <Button onClick={handleUpdateDomain}>Save Changes</Button>
                   </DialogContent>
@@ -103,9 +103,9 @@ export function DomainsAccordion() {
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button
-                      variant="destructive"
-                      size="icon"
-                      onClick={(e) => e.stopPropagation()}
+                        variant="destructive"
+                        size="icon"
+                        onClick={(e) => e.stopPropagation()}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>

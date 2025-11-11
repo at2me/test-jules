@@ -60,11 +60,11 @@ export function JobsList({ domainId }: { domainId: number }) {
         <AccordionItem
           key={job.id}
           value={`job-${job.id}`}
-          className="border rounded-lg mb-2 p-2 shadow-sm bg-gray-50"
+          className="border rounded-lg p-2 shadow-sm bg-gray-50"
         >
-          <AccordionTrigger>
+          <AccordionTrigger className="ml-4 hover:no-underline">
             <div className="flex justify-between w-full items-center">
-              <span>{job.name}</span>
+              <span className="text-base font-semibold">{job.name}</span>
               <div className="flex gap-2 mr-2">
                 <Dialog open={editingJob?.id === job.id} onOpenChange={(isOpen) => !isOpen && setEditingJob(null)}>
                   <DialogTrigger asChild>

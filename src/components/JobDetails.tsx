@@ -15,7 +15,7 @@ export function JobDetails({ jobId }: { jobId: number }) {
       className="w-full"
       onValueChange={setActiveTab}
     >
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start">
         <TabsList>
           <TabsTrigger value="actions">Actions</TabsTrigger>
           <TabsTrigger value="callerids">Caller IDs</TabsTrigger>
@@ -23,10 +23,10 @@ export function JobDetails({ jobId }: { jobId: number }) {
           <TabsTrigger value="schedulers">Schedulers</TabsTrigger>
         </TabsList>
         <div>
-          {activeTab === 'actions' && <Button>Create Action</Button>}
-          {activeTab === 'callerids' && <Button>Create Caller ID</Button>}
-          {activeTab === 'phonelist' && <Button>Create Phone List</Button>}
-          {activeTab === 'schedulers' && <Button>Create Scheduler</Button>}
+          {activeTab === 'actions' && <Button>Add</Button>}
+          {activeTab === 'callerids' && <Button>Add</Button>}
+          {activeTab === 'phonelist' && <Button>Add</Button>}
+          {activeTab === 'schedulers' && <Button>Add</Button>}
         </div>
       </div>
       <TabsContent value="actions">
