@@ -72,42 +72,43 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4 ml-1 mr-1">
-        <Input
-          placeholder="Filter..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      {/*<div className="flex items-center py-4 ml-1 mr-1">*/}
+        {/* Фильтр и меню отображение колонок */}
+        {/*<Input*/}
+        {/*  placeholder="Filter..."*/}
+        {/*  value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}*/}
+        {/*  onChange={(event) =>*/}
+        {/*    table.getColumn("name")?.setFilterValue(event.target.value)*/}
+        {/*  }*/}
+        {/*  className="max-w-sm"*/}
+        {/*/>*/}
+        {/*<DropdownMenu>*/}
+        {/*  <DropdownMenuTrigger asChild>*/}
+        {/*    <Button variant="outline" className="ml-auto">*/}
+        {/*      Columns <ChevronDown />*/}
+        {/*    </Button>*/}
+        {/*  </DropdownMenuTrigger>*/}
+        {/*  <DropdownMenuContent align="end">*/}
+        {/*    {table*/}
+        {/*      .getAllColumns()*/}
+        {/*      .filter((column) => column.getCanHide())*/}
+        {/*      .map((column) => {*/}
+        {/*        return (*/}
+        {/*          <DropdownMenuCheckboxItem*/}
+        {/*            key={column.id}*/}
+        {/*            className="capitalize"*/}
+        {/*            checked={column.getIsVisible()}*/}
+        {/*            onCheckedChange={(value) =>*/}
+        {/*              column.toggleVisibility(!!value)*/}
+        {/*            }*/}
+        {/*          >*/}
+        {/*            {column.id}*/}
+        {/*          </DropdownMenuCheckboxItem>*/}
+        {/*        )*/}
+        {/*      })}*/}
+        {/*  </DropdownMenuContent>*/}
+        {/*</DropdownMenu>*/}
+      {/*</div>*/}
       <div className="overflow-hidden rounded-md border text-left ml-1 mr-1">
         <Table>
           <TableHeader>

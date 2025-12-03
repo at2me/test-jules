@@ -60,7 +60,7 @@ export function JobsList({ domainId }: { domainId: number }) {
         <AccordionItem
           key={job.id}
           value={`job-${job.id}`}
-          className="border rounded-lg p-2 shadow-sm bg-gray-50"
+          className="border rounded-lg p-2 mt-2 shadow-sm bg-gray-50"
         >
           <AccordionTrigger className="ml-4 hover:no-underline">
             <div className="flex justify-between w-full items-center">

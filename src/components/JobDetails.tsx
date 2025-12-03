@@ -22,7 +22,7 @@ export function JobDetails({ jobId }: { jobId: number }) {
           <TabsTrigger value="phonelist">Phone List</TabsTrigger>
           <TabsTrigger value="schedulers">Schedulers</TabsTrigger>
         </TabsList>
-        <div>
+        <div className="mr-2">
           {activeTab === 'actions' && <Button>Add</Button>}
           {activeTab === 'callerids' && <Button>Add</Button>}
           {activeTab === 'phonelist' && <Button>Add</Button>}
