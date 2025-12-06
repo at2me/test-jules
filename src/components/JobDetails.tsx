@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ActionsList } from './ActionsList';
+import { ActionsFlow } from './ActionsFlow';
 import { CallerIDsList } from './CallerIDsList';
 import { PhoneListsList } from './PhoneListsList';
 import { SchedulersList } from './SchedulersList';
@@ -30,7 +30,7 @@ export function JobDetails({ jobId }: { jobId: number }) {
         </div>
       </div>
       <TabsContent value="actions">
-        <ActionsList jobId={jobId} />
+        <ActionsFlow jobId={jobId} />
       </TabsContent>
       <TabsContent value="callerids">
         <CallerIDsList jobId={jobId} />
