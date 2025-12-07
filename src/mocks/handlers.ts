@@ -45,8 +45,15 @@ export const handlers = [
   // Mock for GET /api/actions
   http.get('/api/actions', () => {
     return HttpResponse.json([
-      { id: 1, type: 'playback', priority: 1, enable: true, created_at: new Date().toISOString(), updated_at: new Date().toISOString(), next_action_id: 2 },
-      { id: 2, type: 'transfer', priority: 2, enable: false, created_at: new Date().toISOString(), updated_at: new Date().toISOString(), next_action_id: null },
+      { id: 1, type: 'playback', priority: 1, enable: true, created_at: new Date().toISOString(), updated_at: new Date().toISOString(), data: { position: { x: 100, y: 100 } } },
+      { id: 2, type: 'transfer', priority: 2, enable: false, created_at: new Date().toISOString(), updated_at: new Date().toISOString(), data: { position: { x: 400, y: 100 } } },
+    ]);
+  }),
+
+  // Mock for GET /api/connections
+  http.get('/api/connections', () => {
+    return HttpResponse.json([
+      { id: 1, source: 1, target: 2, condition: 'always' },
     ]);
   }),
 

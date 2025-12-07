@@ -3,6 +3,7 @@ import type {
   Domain,
   Job,
   Action,
+  ActionConnection,
   CallerID,
   PhoneList,
   Scheduler,
@@ -132,6 +133,16 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: (_result, _error, id) => [{ type: 'Action', id }],
     }),
+    getConnections: builder.query<ActionConnection[], number>({
+      query: (jobId) => ({ url: 'connections', params: { job_id: jobId } }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'ActionConnection' as const, id })),
+              { type: 'ActionConnection', id: 'LIST' },
+            ]
+          : [{ type: 'ActionConnection', id: 'LIST' }],
+    }),
 
     // CallerIDs
     getCallerIDs: builder.query<CallerID[], number>({
@@ -232,6 +243,7 @@ export const {
   useGetActionsQuery,
   useUpdateActionMutation,
   useDeleteActionMutation,
+  useGetConnectionsQuery,
   useGetCallerIDsQuery,
   useUpdateCallerIDMutation,
   useDeleteCallerIDMutation,

@@ -1,48 +1,91 @@
-import { useGetActionsQuery } from '@/lib/state/apiSlice';
-import ReactFlow, { MiniMap, Controls, Background, Node, Edge } from 'reactflow';
+import { useGetActionsQuery, useGetConnectionsQuery } from '@/lib/state/apiSlice';
+import ReactFlow, {
+  MiniMap,
+  Controls,
+  Background,
+  Node,
+  Edge,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+  Connection,
+} from 'reactflow';
 import 'reactflow/dist/style.css';
-import { useMemo } from 'react';
-import { Action } from '@/lib/state/types';
+import { useCallback, useEffect, useMemo } from 'react';
+import { Action, ActionConnection } from '@/lib/state/types';
+import { Button } from '../ui/button';
 
-const position = { x: 0, y: 0 };
+let id = 3;
+const getId = () => `${id++}`;
 
-const transformToNodesAndEdges = (actions: Action[]) => {
-  const nodes: Node[] = [];
-  const edges: Edge[] = [];
+const transformActionsToNodes = (actions: Action[]): Node[] => {
+  return actions.map((action) => ({
+    id: action.id.toString(),
+    data: { label: `${action.type} (priority: ${action.priority})` },
+    position: action.data.position || { x: Math.random() * 400, y: Math.random() * 400 },
+  }));
+};
 
-  actions.forEach((action, index) => {
-    nodes.push({
-      id: action.id.toString(),
-      data: { label: `${action.type} (priority: ${action.priority})` },
-      position: { x: index * 250, y: 100 },
-    });
-
-    if (action.next_action_id) {
-      edges.push({
-        id: `e${action.id}-${action.next_action_id}`,
-        source: action.id.toString(),
-        target: action.next_action_id.toString(),
-      });
-    }
-  });
-
-  return { nodes, edges };
+const transformConnectionsToEdges = (connections: ActionConnection[]): Edge[] => {
+  return connections.map((connection) => ({
+    id: `e${connection.source}-${connection.target}`,
+    source: connection.source.toString(),
+    target: connection.target.toString(),
+    label: connection.condition,
+  }));
 };
 
 export function ActionsFlow({ jobId }: { jobId: number }) {
-  const { data: actions, isLoading, isError } = useGetActionsQuery(jobId);
+  const { data: initialActions, isLoading: isLoadingActions, isError: isErrorActions } = useGetActionsQuery(jobId);
+  const { data: initialConnections, isLoading: isLoadingConnections, isError: isErrorConnections } = useGetConnectionsQuery(jobId);
 
-  const { nodes, edges } = useMemo(() => {
-    if (!actions) return { nodes: [], edges: [] };
-    return transformToNodesAndEdges(actions);
-  }, [actions]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-  if (isLoading) return <div>Loading actions...</div>;
-  if (isError || !actions) return <div>Error loading actions.</div>;
+  useEffect(() => {
+    if (initialActions) {
+      setNodes(transformActionsToNodes(initialActions));
+    }
+  }, [initialActions, setNodes]);
+
+  useEffect(() => {
+    if (initialConnections) {
+      setEdges(transformConnectionsToEdges(initialConnections));
+    }
+  }, [initialConnections, setEdges]);
+
+  const onConnect = useCallback(
+    (params: Connection) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  );
+
+  const onAdd = useCallback(() => {
+    const newNode = {
+      id: getId(),
+      data: { label: 'New Action' },
+      position: {
+        x: Math.random() * 500,
+        y: Math.random() * 500,
+      },
+    };
+    setNodes((nds) => nds.concat(newNode));
+  }, [setNodes]);
+
+  if (isLoadingActions || isLoadingConnections) return <div>Loading...</div>;
+  if (isErrorActions || isErrorConnections) return <div>Error loading data.</div>;
 
   return (
     <div style={{ height: '500px' }}>
-      <ReactFlow nodes={nodes} edges={edges}>
+      <Button onClick={onAdd} className="mb-4">
+        Add Action
+      </Button>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+      >
         <MiniMap />
         <Controls />
         <Background />

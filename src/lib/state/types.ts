@@ -54,6 +54,13 @@ export interface Scheduler {
   updated_at: string;
 }
 
+export interface ActionConnection {
+  id: number;
+  source: number;
+  target: number;
+  condition: string | null;
+}
+
 export interface Job {
   id: number;
   domain: number;
